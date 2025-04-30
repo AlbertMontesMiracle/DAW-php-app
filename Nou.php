@@ -7,6 +7,8 @@
  * - POST ➜  valida i insereix el nou producte
  */
 
+// Versió DEVELOP – comentari alternatiu
+
 require_once 'Connexio.php';
 require_once 'Header.php';
 require_once 'Footer.php';
