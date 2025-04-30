@@ -9,8 +9,8 @@
 
 
 
- // Versió MAIN – comentari de prova
-
+ // Versió MAIN – comentari de prova 
+ // Versió MAIN – comentari de prova 2
 require_once 'Connexio.php';
 require_once 'Header.php';
 require_once 'Footer.php';
