@@ -15,15 +15,37 @@
 require_once 'Connexio.php';
 require_once 'Header.php';
 require_once 'Footer.php';
-
+/**
+ * Classe responsable de crear el formulari d'alta i inserir
+ * els productes a la base de dades *la_meva_botiga*.
+ *
+ * @package DAWphpApp
+ * @author  Albert Montes
+ */
 class Nou {
 
-    /** @var mysqli */
-    private $conn;
+
+/** @var mysqli */
+private $conn;
+/**
+ * Constructor.
+ *
+ * Crea la connexió a la base de dades utilitzant la
+ * classe Connexio.
+ *
+ * @throws \mysqli_sql_exception Si la connexió falla.
+ */
 
     public function __construct() {
         $this->conn = (new Connexio())->obtenirConnexio();
     }
+
+/**
+ * Mostra el formulari d'alta.
+ *
+ * @param string $missatge Missatge opcional a mostrar.
+ * @return void
+ */
 
     /** Pinta el formulari */
     public function mostrarFormulari(string $missatge = ''): void {
@@ -74,7 +96,15 @@ class Nou {
 
         $footer->mostrarFooter();
     }
-
+/**
+ * Processa la petició POST i insereix el nou producte.
+ *
+ * 1. Llegeix i valida camps (nom, descripció, preu, categoria).  
+ * 2. Fa la inserció a la taula `productes`.  
+ * 3. Torna a mostrar el formulari amb un missatge d'èxit o error.
+ *
+ * @return void
+ */
     /** Procesa el POST i insereix el nou producte */
     public function insertar(): void {
         $nom        = $_POST['nom']        ?? '';
@@ -99,6 +129,11 @@ class Nou {
             $this->mostrarFormulari('Error en afegir el producte: ' . $stmt->error);
         }
     }
+/**
+ * Obté totes les categories disponibles.
+ *
+ * @return array<int, array<string, mixed>>
+ */
 
     /** Llegeix les categories per desplegable */
     private function obtenirCategories(): array {
